@@ -1,0 +1,12 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+pystray = "*"
+webcolors = "==1.11.1"
+
+[dev-packages]
+
+
