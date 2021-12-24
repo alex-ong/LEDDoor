@@ -58,18 +58,19 @@ def handle_new_status(status, last_command):
     
 
 def main(icon):
-    run_led_command(LightCommand.ON)    
+    run_led_command(LightCommand.ON)
+    last_sent_ts = time.time()
     last_command = None
     last_status = None
     icon.visible = True
     while not icon._led_stop:
         new_status = check_status()
-        if new_status != last_status:
-            last_command = handle_new_status(new_status, 
+        if new_status != last_status or time.time() - last_sent_ts > 60:
+            last_command = handle_new_status(new_status,
                                              last_command)
             last_status = new_status
-        time.sleep(0.5)
-
+            last_sent_ts = time.time()
+        time.sleep(0.016)
 
 def create_image():
     # Generate an image and draw a pattern
