@@ -5,4 +5,4 @@ Meeting room status using LEDs
 `_install.bat`
 
 # Running
-`_run.bat`
+`_runner.vbs`
