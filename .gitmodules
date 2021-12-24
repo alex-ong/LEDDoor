@@ -1,0 +1,3 @@
+[submodule "webcam_monitor"]
+	path = webcam_monitor
+	url = https://github.com/alex-ong/webcam_monitor
