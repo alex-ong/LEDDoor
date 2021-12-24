@@ -41,7 +41,7 @@ def handle_new_status(status, last_command):
         if is_in_work_meeting(mic):        
             command = LightCommand.FIRE
         elif "discord" in mic:
-            command = LightCommand.RED
+            command = LightCommand.PURPLE
         else:
             command = LightCommand.BLUE
     
