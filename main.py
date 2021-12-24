@@ -5,7 +5,7 @@ import logging
 
 from PIL import Image
 from webcam_monitor.status import check_status
-from led_door.commands import CommandMap, LightCommand
+from led_door.commands import CommandMap, LightCommand, ColorCommand
 
 logging.basicConfig(filename='logging.log',
                     format='%(asctime)s %(levelname)-8s %(message)s',
@@ -15,7 +15,10 @@ def get_led_library_cwd():
     return os.path.abspath("flux_led")
 
 def run_led_command(command):
-    string_cmd = CommandMap[command]
+    if isinstance(command, LightCommand):
+        string_cmd = CommandMap[command]
+    else:
+        string_cmd = CommandMap[command[0]] + " " + command[1]
     run_subprocess(string_cmd)
     
 def run_subprocess(command):
@@ -41,9 +44,11 @@ def handle_new_status(status, last_command):
         if is_in_work_meeting(mic):        
             command = LightCommand.FIRE
         elif "discord" in mic:
-            command = LightCommand.PURPLE
+            command = ColorCommand("Purple")
+        elif "riotclientservices" in mic:
+            command = ColorCommand("Green")
         else:
-            command = LightCommand.BLUE
+            command = ColorCommand("Blue")
     
     if command != last_command:
         run_led_command(command)
