@@ -35,18 +35,18 @@ def handle_new_status(status, last_command):
     command = LightCommand.OFF
     if len(webcam) > 0:    
         # Always run fire or water if webcam is on
-        all_items = webcam+mic
+        all_items = webcam + mic
         if is_in_work_meeting(all_items):
             command = LightCommand.FIRE
         else:
             command = LightCommand.WATER
     elif len(mic) > 0:
-        if is_in_work_meeting(mic):        
+        if is_in_work_meeting(mic):
             command = LightCommand.FIRE
         elif "discord" in mic:
-            command = ColorCommand("Purple")
+            command = ColorCommand("69,0,255")
         elif "riotclientservices" in mic:
-            command = ColorCommand("Green")
+            command = ColorCommand("255, 37, 255")
         else:
             command = ColorCommand("Blue")
     
@@ -84,14 +84,9 @@ def close_app(icon, _):
 import pystray
 from pystray import Icon, Menu, MenuItem
 def create_icon():
-    icon =  Icon('LEDDoor', create_image(), 
-        menu=Menu(
-            MenuItem(
-                'Close',
-                close_app
-            )
-        )
-    )
+    icon = Icon('LEDDoor', create_image(), 
+        menu=Menu(MenuItem('Close',
+                close_app)))
     
     return icon
 
