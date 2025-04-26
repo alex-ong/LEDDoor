@@ -19,7 +19,7 @@ class LightCommand(Enum):
     COLOR = 3
 
 
-LIGHT_IP = "192.168.1.114"
+LIGHT_IP = "10.0.1.50" # doesn't support hostname
 BASE_CMD = f"pipenv run python -m flux_led.fluxled {LIGHT_IP}"
 ON_CMD = f"{BASE_CMD} -1"
 OFF_CMD = f"{BASE_CMD} -c 0,0,0"
