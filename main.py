@@ -11,6 +11,7 @@ from led_door.commands import CommandMap, LightCommand, ColorCommand
 
 logging.basicConfig(
     filename="logging.log",
+    filemode="w",
     format="%(asctime)s %(levelname)-8s %(message)s",
     level=logging.INFO,
     datefmt="%Y-%m-%d %H:%M:%S",
@@ -39,7 +40,6 @@ def is_in_work_meeting(items):
 
 
 def handle_new_status(status, last_command, is_force_disabled):
-    logging.info(status)
     webcam, mic = status
     command = LightCommand.OFF
     if is_force_disabled:
@@ -62,6 +62,7 @@ def handle_new_status(status, last_command, is_force_disabled):
             command = ColorCommand("Blue")
 
     if command != last_command:
+        logging.info(f"{status}")
         run_led_command(command)
 
     return command
