@@ -123,12 +123,18 @@ def is_force_off_checked(_=None):
     return FORCE_OFF
 
 
+def open_logfile(*_):
+    log_path = os.path.abspath("logging.log")
+    os.startfile(log_path)
+
+
 def create_icon():
     icon = Icon(
         "LEDDoor",
         create_image(),
         menu=Menu(
             MenuItem("Force Disable", toggle_force_off, checked=is_force_off_checked),
+            MenuItem("Open Log", open_logfile),
             MenuItem("Close", close_app),
         ),
     )
