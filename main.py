@@ -34,9 +34,9 @@ def run_subprocess(command):
     cwd = get_led_library_cwd()
     subprocess.run(command.split(), cwd=cwd)
 
-
+WORK_MEETING_APPS = ["teams", "skype", "webex", "zoom"]
 def is_in_work_meeting(items):
-    return any(item in ["teams", "skype", "webex", "zoom"] for item in items)
+    return any(item in WORK_MEETING_APPS for item in items)
 
 
 def handle_new_status(status, last_command, is_force_disabled):
